@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
+import "remixicon/fonts/remixicon.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +29,93 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-7xl">
+          <nav className="bg-[#1a1a1a]/60 backdrop-blur-md border border-white/10 rounded-full px-5 md:px-8 py-3 shadow-lg">
+            <div className="flex items-center justify-between">
+              {/* Logo */}
+              <a
+                href="/"
+                className="flex items-center gap-2 text-xl md:text-2xl font-bold text-white"
+              >
+                <span className="text-2xl">
+                  <i className="ri-restaurant-2-line text-[#f59e0b] text-3xl"></i>
+                </span>
+                Pizza House
+              </a>
+
+              {/* Navigation */}
+              <div className="hidden md:flex items-center gap-7 text-sm font-medium text-gray-300">
+                <a
+                  href="/"
+                  className="hover:text-[#f59e0b] transition duration-300"
+                >
+                  Home
+                </a>
+
+                <a
+                  href="/menu"
+                  className="hover:text-[#f59e0b] transition duration-300"
+                >
+                  Menu
+                </a>
+
+                <a
+                  href="/about-us"
+                  className="hover:text-[#f59e0b] transition duration-300"
+                >
+                  About
+                </a>
+
+                <a
+                  href="/offers"
+                  className="hover:text-[#f59e0b] transition duration-300"
+                >
+                  Offers
+                </a>
+
+                <a
+                  href="/contact-us"
+                  className="hover:text-[#f59e0b] transition duration-300"
+                >
+                  Contact
+                </a>
+              </div>
+
+              {/* Order Button */}
+              <a
+                href="/menu"
+                className="bg-[#f59e0b] text-black font-semibold text-sm px-4 md:px-5 py-2.5 rounded-full hover:bg-[#fbbf24] transition duration-300"
+              >
+                Order Now
+              </a>
+            </div>
+          </nav>
+        </header>
+        {children}
+        <footer className="w-full bg-[#111111] border-t border-white/10 text-white py-6">
+          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <h2 className="text-xl font-bold text-[#c89b6d]">Brew Haven</h2>
+
+            <div className="flex gap-5 text-sm text-gray-400">
+              <a href="/" className="hover:text-white transition">
+                Home
+              </a>
+              <a href="/menu" className="hover:text-white transition">
+                Menu
+              </a>
+              <a href="/about-us" className="hover:text-white transition">
+                About
+              </a>
+              <a href="/contact-us" className="hover:text-white transition">
+                Contact
+              </a>
+            </div>
+
+            <p className="text-sm text-gray-500">© 2026 Brew Haven</p>
+          </div>
+        </footer>
+      </body>
     </html>
   );
 }
