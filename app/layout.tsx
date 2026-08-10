@@ -80,6 +80,12 @@ export default function RootLayout({
                 >
                   Contact
                 </a>
+                <a
+                  href="/cart"
+                  className="hover:text-[#f59e0b] transition duration-300"
+                >
+                  <i className="ri-shopping-cart-fill text-2xl"></i>
+                </a>
               </div>
 
               {/* Order Button */}
@@ -89,6 +95,7 @@ export default function RootLayout({
               >
                 Order Now
               </a>
+              
             </div>
           </nav>
         </header>

@@ -3,7 +3,7 @@ import React from "react";
 export default function page() {
   return (
     <div>
-      <section id="contact" className="w-full bg-[#fff7ed] py-20 px-6">
+      <section id="contact" className="w-full bg-[#fff7ed] py-25 px-6">
         <div className="max-w-7xl mx-auto">
           {/* Heading */}
           <div className="text-center mb-12">

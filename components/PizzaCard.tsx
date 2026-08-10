@@ -56,7 +56,8 @@ export default function PizzaCard({
               {description}
             </p>
 
-            <button className="mt-4 w-full bg-black text-white py-2 rounded-full font-semibold">
+            <button 
+             className="mt-4 w-full bg-black text-white py-2 rounded-full font-semibold">
               Add to Cart
             </button>
 
