@@ -80,12 +80,22 @@ export default function RootLayout({
                 >
                   Contact
                 </a>
-                <a
-                  href="/cart"
-                  className="hover:text-[#f59e0b] transition duration-300"
-                >
-                  <i className="ri-shopping-cart-fill text-2xl"></i>
-                </a>
+
+                {/* Search & Cart */}
+                <div className="flex items-center gap-2 ml-1">
+                  {/* Search */}
+                  <button className="w-10 h-10 flex items-center justify-center rounded-full text-white text-xl hover:bg-white/10 hover:text-[#f59e0b] transition duration-300">
+                    <i className="ri-search-line"></i>
+                  </button>
+
+                  {/* Cart */}
+                  <a
+                    href="/cart"
+                    className="w-10 h-10 flex items-center justify-center rounded-full text-white hover:bg-white/10 hover:text-[#f59e0b] transition duration-300"
+                  >
+                    <i className="ri-shopping-cart-fill text-2xl"></i>
+                  </a>
+                </div>
               </div>
 
               {/* Order Button */}
@@ -95,7 +105,6 @@ export default function RootLayout({
               >
                 Order Now
               </a>
-              
             </div>
           </nav>
         </header>

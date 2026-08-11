@@ -3,7 +3,7 @@ import React from "react";
 export default function page() {
   return (
     <div>
-      <section id="offers" className="w-full bg-[#1a1a1a] py-25 px-6">
+      <section id="offers" className="w-full bg-white py-25 px-6">
         <div className="max-w-7xl mx-auto">
           {/* Heading */}
           <div className="text-center mb-12">
@@ -11,7 +11,7 @@ export default function page() {
               Special Offers
             </p>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-white">
+            <h2 className="text-4xl md:text-5xl font-bold text-black">
               Delicious Deals For You
             </h2>
 
@@ -24,19 +24,19 @@ export default function page() {
           {/* Offers */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Offer 1 */}
-            <div className="bg-[#fff7ed]/80 rounded-3xl p-8 text-center shadow-xl hover:-translate-y-2 transition duration-300">
-              <div className="text-5xl mb-5"><i className="ri-group-fill"></i></div>
+            <div className="bg-[#1a1a1a]/60 rounded-3xl p-8 text-center shadow-xl hover:-translate-y-2 transition duration-300">
+              <div className="text-5xl mb-5 text-white"><i className="ri-group-fill"></i></div>
 
-              <h3 className="text-2xl font-bold text-[#1a1a1a] mb-3">
+              <h3 className="text-2xl font-bold text-white mb-3">
                 Family Feast
               </h3>
 
-              <p className="text-gray-600 leading-relaxed mb-6">
+              <p className="text-white/80 leading-relaxed mb-6">
                 Get 2 large pizzas with garlic bread and a bottle of soft drink.
               </p>
 
               <div className="mb-6">
-                <span className="text-gray-500 line-through text-lg">
+                <span className="text-black line-through text-lg">
                   $39.99
                 </span>
 
@@ -59,7 +59,7 @@ export default function page() {
                 POPULAR
               </div>
 
-              <div className="text-5xl mb-5"><i className="ri-price-tag-3-fill"></i></div>
+              <div className="text-5xl mb-5 text-white"><i className="ri-price-tag-3-fill"></i></div>
 
               <h3 className="text-2xl font-bold text-white mb-3">
                 Weekend Special
@@ -82,14 +82,14 @@ export default function page() {
             </div>
 
             {/* Offer 3 */}
-            <div className="bg-[#fff7ed]/80 rounded-3xl p-8 text-center shadow-xl hover:-translate-y-2 transition duration-300">
-              <div className="text-5xl mb-5"><i className="ri-truck-fill"></i></div>
+            <div className="bg-[#1a1a1a]/60 rounded-3xl p-8 text-center shadow-xl hover:-translate-y-2 transition duration-300">
+              <div className="text-5xl mb-5 text-white"><i className="ri-truck-fill"></i></div>
 
-              <h3 className="text-2xl font-bold text-[#1a1a1a] mb-3">
+              <h3 className="text-2xl font-bold text-white mb-3">
                 Free Delivery
               </h3>
 
-              <p className="text-gray-600 leading-relaxed mb-6">
+              <p className="text-white/80 leading-relaxed mb-6">
                 Enjoy free delivery on all orders above $25. Hot pizza,
                 delivered right to your door.
               </p>
@@ -97,7 +97,7 @@ export default function page() {
               <div className="mb-6">
                 <span className="text-[#dc2626] text-3xl font-bold">FREE</span>
 
-                <span className="text-gray-500 text-lg ml-2">Delivery</span>
+                <span className="text-black text-lg ml-2">Delivery</span>
               </div>
 
               <a
