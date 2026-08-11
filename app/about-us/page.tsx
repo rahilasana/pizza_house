@@ -51,7 +51,7 @@ export default function page() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-8">
                 <div className="flex items-center gap-3">
                   <span className="flex items-center justify-center w-10 h-10 bg-gray-500 rounded-full text-xl">
-                    <i className="ri-leaf-fill"></i>
+                    <i className="ri-leaf-fill text-white"></i>
                   </span>
                   <div>
                     <h3 className="font-bold text-[#1a1a1a]">
@@ -65,7 +65,7 @@ export default function page() {
 
                 <div className="flex items-center gap-3">
                   <span className="flex items-center justify-center w-10 h-10 bg-gray-500 rounded-full text-xl">
-                    <i className="ri-fire-fill"></i>
+                    <i className="ri-fire-fill text-white"></i>
                   </span>
                   <div>
                     <h3 className="font-bold text-[#1a1a1a]">Freshly Baked</h3>

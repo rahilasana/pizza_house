@@ -6,7 +6,7 @@ export default function page() {
     <div>
       <section
         id="home"
-        className="min-h-screen bg-[#fff7ed] flex items-center pt-28 pb-16"
+        className="min-h-screen bg-white flex items-center pt-28 pb-16"
       >
         <div className="max-w-7xl mx-auto w-full px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
