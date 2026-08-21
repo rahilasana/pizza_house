@@ -77,7 +77,7 @@ export default function page() {
                 <div className="absolute inset-0 bg-[#f59e0b] rounded-full blur-3xl opacity-30 scale-90"></div>
 
                 <img
-                  src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80"
+                  src="https://images.unsplash.com/photo-1593504049359-74330189a345?q=80&w=327&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Delicious Pizza"
                   width={320}
                   height={320}
