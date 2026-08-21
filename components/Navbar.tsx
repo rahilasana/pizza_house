@@ -65,12 +65,12 @@ export default function Navbar() {
               Contact
             </Link>
 
-            <Link
+            {/* <Link
               href="/practice"
               className="hover:text-[#f59e0b] transition duration-300"
             >
               Practice
-            </Link>
+            </Link> */}
 
             {/* Search + Cart */}
             <div className="flex items-center gap-2 ml-1">
