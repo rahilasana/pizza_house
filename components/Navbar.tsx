@@ -166,13 +166,13 @@ export default function Navbar() {
                 Contact
               </Link>
 
-              <Link
+              {/* <Link
                 href="/practice"
                 onClick={closeMenu}
                 className="px-4 py-3 rounded-xl hover:bg-white/10 hover:text-[#f59e0b] transition"
               >
                 Practice
-              </Link>
+              </Link> */}
 
               {/* Mobile Search */}
               <Link
