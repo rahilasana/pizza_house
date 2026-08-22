@@ -53,7 +53,7 @@ export default function RootLayout({
             <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
 
               <h2 className="text-xl font-bold text-[#c89b6d]">
-                Brew Haven
+                  Pizza House
               </h2>
 
               <div className="flex gap-5 text-sm text-gray-400">
