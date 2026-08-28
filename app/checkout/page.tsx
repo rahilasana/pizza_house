@@ -43,36 +43,54 @@ export default function Page() {
 
     const formData = new FormData(event.currentTarget);
 
-    const orderData = {
-      customer: {
-        name: formData.get("name"),
-        email: formData.get("email"),
-        phone: formData.get("phone"),
-        address: formData.get("address"),
-        city: formData.get("city"),
-        postal: formData.get("postal"),
-        notes: formData.get("notes"),
-      },
+const orderData = {
+  id: `ORD-${Date.now()}`,
 
-      paymentMethod,
+  customer: {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    phone: formData.get("phone"),
+    address: formData.get("address"),
+    city: formData.get("city"),
+    postal: formData.get("postal"),
+    notes: formData.get("notes"),
+  },
 
-      items: cart,
+  paymentMethod,
 
-      summary: {
-        subtotal,
-        delivery,
-        tax,
-        total,
-      },
+  items: cart,
 
-      orderDate: new Date().toISOString(),
-    };
+  summary: {
+    subtotal,
+    delivery,
+    tax,
+    total,
+  },
+
+  status: "Pending",
+
+  orderDate: new Date().toISOString(),
+};
 
     // Save order information
-    localStorage.setItem(
-      "pizza-order",
-      JSON.stringify(orderData)
-    );
+   const existingOrders = localStorage.getItem("pizza-orders");
+
+let orders = [];
+
+if (existingOrders) {
+  try {
+    orders = JSON.parse(existingOrders);
+  } catch (error) {
+    console.error("Failed to load existing orders:", error);
+  }
+}
+
+orders.push(orderData);
+
+localStorage.setItem("pizza-orders", JSON.stringify(orders));
+
+// Latest order confirmation ke liye
+localStorage.setItem("pizza-order", JSON.stringify(orderData));
 
     // Go to confirmation page
     router.push("/order-confirmation");
