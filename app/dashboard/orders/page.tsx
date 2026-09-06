@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -38,9 +39,10 @@ export default function OrdersPage() {
 
     if (savedOrders) {
       try {
-        setOrders(JSON.parse(savedOrders));
+        const data = JSON.parse(savedOrders);
+        setOrders(data);
       } catch (error) {
-        console.error("Failed to load orders:", error);
+        console.error("Error loading orders:", error);
       }
     }
   }, []);
@@ -65,10 +67,11 @@ export default function OrdersPage() {
         <div className="space-y-6">
           {orders.map((order, index) => (
             <div
-              key={order.id || `order-${index}`}
+              key={order.id || index}
               className="bg-white shadow rounded-xl p-6"
             >
-              <div className="flex justify-between items-center mb-5">
+              {/* Order Header */}
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-5">
                 <div>
                   <h2 className="text-xl font-bold">
                     {order.id}
@@ -84,33 +87,41 @@ export default function OrdersPage() {
                 </span>
               </div>
 
+              {/* Customer / Delivery / Payment */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                {/* Customer */}
                 <div>
                   <h3 className="font-semibold mb-2">
                     Customer
                   </h3>
 
                   <p>{order.customer.name}</p>
+
                   <p className="text-gray-500">
                     {order.customer.email}
                   </p>
+
                   <p className="text-gray-500">
                     {order.customer.phone}
                   </p>
                 </div>
 
+                {/* Delivery */}
                 <div>
                   <h3 className="font-semibold mb-2">
                     Delivery
                   </h3>
 
                   <p>{order.customer.address}</p>
+
                   <p>
                     {order.customer.city} -{" "}
                     {order.customer.postal}
                   </p>
                 </div>
 
+                {/* Payment */}
                 <div>
                   <h3 className="font-semibold mb-2">
                     Payment
@@ -124,16 +135,17 @@ export default function OrdersPage() {
                 </div>
               </div>
 
+              {/* Items */}
               <div className="border-t mt-6 pt-5">
                 <h3 className="font-semibold mb-3">
                   Items
                 </h3>
 
                 <div className="space-y-2">
-                  {order.items.map((item, index) => (
+                  {order.items.map((item, itemIndex) => (
                     <div
-                      key={index}
-                      className="flex justify-between"
+                      key={`${order.id}-${itemIndex}`}
+                      className="flex justify-between items-center"
                     >
                       <span>
                         {item.name} × {item.quantity}
@@ -152,6 +164,44 @@ export default function OrdersPage() {
                 </div>
               </div>
 
+              {/* Summary */}
+              <div className="border-t mt-6 pt-5">
+                <h3 className="font-semibold mb-3">
+                  Order Summary
+                </h3>
+
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span>Subtotal</span>
+                    <span>
+                      ${order.summary.subtotal.toFixed(2)}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between">
+                    <span>Delivery</span>
+                    <span>
+                      ${order.summary.delivery.toFixed(2)}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between">
+                    <span>Tax</span>
+                    <span>
+                      ${order.summary.tax.toFixed(2)}
+                    </span>
+                  </div>
+
+                  <div className="border-t pt-2 flex justify-between font-bold text-lg">
+                    <span>Total</span>
+                    <span>
+                      ${order.summary.total.toFixed(2)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Notes */}
               {order.customer.notes && (
                 <div className="border-t mt-5 pt-5">
                   <h3 className="font-semibold mb-1">
@@ -170,3 +220,4 @@ export default function OrdersPage() {
     </div>
   );
 }
+

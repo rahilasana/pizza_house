@@ -1,10 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [storeName, setStoreName] = useState("Pizza House");
+
+  useEffect(() => {
+    const loadSettings = () => {
+      const savedSettings = localStorage.getItem("pizza-settings");
+
+      if (savedSettings) {
+        try {
+          const settings = JSON.parse(savedSettings);
+
+          if (settings.storeName) {
+            setStoreName(settings.storeName);
+          }
+        } catch (error) {
+          console.error("Failed to load store settings:", error);
+        }
+      }
+    };
+
+    loadSettings();
+
+    window.addEventListener("storage", loadSettings);
+
+    return () => {
+      window.removeEventListener("storage", loadSettings);
+    };
+  }, []);
 
   const closeMenu = () => {
     setIsOpen(false);
@@ -13,7 +40,6 @@ export default function Navbar() {
   return (
     <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-7xl">
       <nav className="bg-[#1a1a1a]/60 backdrop-blur-md border border-white/10 rounded-3xl md:rounded-full px-5 md:px-8 py-4 shadow-lg">
-
         <div className="flex items-center justify-between">
 
           {/* Logo */}
@@ -24,12 +50,11 @@ export default function Navbar() {
           >
             <i className="ri-restaurant-2-line text-[#f59e0b] text-3xl"></i>
 
-            <span>Pizza House</span>
+            <span>{storeName}</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8 text-base font-medium text-gray-200">
-
             <Link
               href="/"
               className="hover:text-[#f59e0b] transition duration-300"
@@ -59,22 +84,21 @@ export default function Navbar() {
             </Link>
 
             <Link
+              href="/reviews"
+              className="hover:text-[#f59e0b] transition duration-300"
+            >
+              Reviews
+            </Link>
+
+            <Link
               href="/contact-us"
               className="hover:text-[#f59e0b] transition duration-300"
             >
               Contact
             </Link>
 
-            {/* <Link
-              href="/practice"
-              className="hover:text-[#f59e0b] transition duration-300"
-            >
-              Practice
-            </Link> */}
-
             {/* Search + Cart */}
             <div className="flex items-center gap-2 ml-1">
-
               {/* Search */}
               <Link
                 href="/menu?focus=search"
@@ -92,7 +116,6 @@ export default function Navbar() {
               >
                 <i className="ri-shopping-cart-fill text-2xl"></i>
               </Link>
-
             </div>
           </div>
 
@@ -117,13 +140,11 @@ export default function Navbar() {
               } text-2xl`}
             ></i>
           </button>
-
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden mt-4 pt-4 border-t border-white/10">
-
             <div className="flex flex-col gap-2 text-base font-medium text-gray-300">
 
               <Link
@@ -157,6 +178,13 @@ export default function Navbar() {
               >
                 Offers
               </Link>
+               <Link
+                href="/reviews"
+                onClick={closeMenu}
+                className="px-4 py-3 rounded-xl hover:bg-white/10 hover:text-[#f59e0b] transition"
+              >
+                Reviews
+              </Link>
 
               <Link
                 href="/contact-us"
@@ -165,14 +193,6 @@ export default function Navbar() {
               >
                 Contact
               </Link>
-
-              {/* <Link
-                href="/practice"
-                onClick={closeMenu}
-                className="px-4 py-3 rounded-xl hover:bg-white/10 hover:text-[#f59e0b] transition"
-              >
-                Practice
-              </Link> */}
 
               {/* Mobile Search */}
               <Link
@@ -202,11 +222,9 @@ export default function Navbar() {
               >
                 Order Now
               </Link>
-
             </div>
           </div>
         )}
-
       </nav>
     </header>
   );

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../../context/CartContext";
 
 export default function Page() {
   const router = useRouter();
@@ -24,9 +24,7 @@ export default function Page() {
 
   const total = subtotal + delivery + tax;
 
-  const handlePlaceOrder = (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handlePlaceOrder = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (cart.length === 0) {
@@ -43,54 +41,54 @@ export default function Page() {
 
     const formData = new FormData(event.currentTarget);
 
-const orderData = {
-  id: `ORD-${Date.now()}`,
+    const orderData = {
+      id: `ORD-${Date.now()}`,
 
-  customer: {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    phone: formData.get("phone"),
-    address: formData.get("address"),
-    city: formData.get("city"),
-    postal: formData.get("postal"),
-    notes: formData.get("notes"),
-  },
+      customer: {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        phone: formData.get("phone"),
+        address: formData.get("address"),
+        city: formData.get("city"),
+        postal: formData.get("postal"),
+        notes: formData.get("notes"),
+      },
 
-  paymentMethod,
+      paymentMethod,
 
-  items: cart,
+      items: cart,
 
-  summary: {
-    subtotal,
-    delivery,
-    tax,
-    total,
-  },
+      summary: {
+        subtotal,
+        delivery,
+        tax,
+        total,
+      },
 
-  status: "Pending",
+      status: "Pending",
 
-  orderDate: new Date().toISOString(),
-};
+      orderDate: new Date().toISOString(),
+    };
 
     // Save order information
-   const existingOrders = localStorage.getItem("pizza-orders");
+    const existingOrders = localStorage.getItem("pizza-orders");
 
-let orders = [];
+    let orders = [];
 
-if (existingOrders) {
-  try {
-    orders = JSON.parse(existingOrders);
-  } catch (error) {
-    console.error("Failed to load existing orders:", error);
-  }
-}
+    if (existingOrders) {
+      try {
+        orders = JSON.parse(existingOrders);
+      } catch (error) {
+        console.error("Failed to load existing orders:", error);
+      }
+    }
 
-orders.push(orderData);
+    orders.push(orderData);
 
-localStorage.setItem("pizza-orders", JSON.stringify(orders));
+    localStorage.setItem("pizza-orders", JSON.stringify(orders));
 
-// Latest order confirmation ke liye
-localStorage.setItem("pizza-order", JSON.stringify(orderData));
+    // Latest order confirmation ke liye
+    localStorage.setItem("pizza-order", JSON.stringify(orderData));
 
     // Go to confirmation page
     router.push("/order-confirmation");
@@ -98,15 +96,10 @@ localStorage.setItem("pizza-order", JSON.stringify(orderData));
 
   return (
     <div>
-      <section
-        id="checkout"
-        className="min-h-screen bg-[#fff7ed] py-28 px-6"
-      >
+      <section id="checkout" className="min-h-screen bg-[#fff7ed] py-28 px-6">
         <div className="max-w-6xl mx-auto">
-
           {/* Heading */}
           <div className="text-center mb-12">
-
             <p className="text-[#f59e0b] uppercase tracking-widest text-sm font-semibold mb-3">
               Checkout
             </p>
@@ -118,23 +111,16 @@ localStorage.setItem("pizza-order", JSON.stringify(orderData));
             <p className="text-gray-600 mt-4">
               Enter your details and choose your preferred payment method.
             </p>
-
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
             {/* Customer Information */}
             <div className="lg:col-span-2 bg-white rounded-3xl p-7 md:p-10 shadow-lg">
-
               <h2 className="text-2xl font-bold text-[#1a1a1a] mb-7">
                 Customer Information
               </h2>
 
-              <form
-                onSubmit={handlePlaceOrder}
-                className="space-y-6"
-              >
-
+              <form onSubmit={handlePlaceOrder} className="space-y-6">
                 {/* Name */}
                 <div>
                   <label
@@ -156,7 +142,6 @@ localStorage.setItem("pizza-order", JSON.stringify(orderData));
 
                 {/* Email + Phone */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-
                   <div>
                     <label
                       htmlFor="email"
@@ -192,7 +177,6 @@ localStorage.setItem("pizza-order", JSON.stringify(orderData));
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-[#dc2626] focus:ring-2 focus:ring-red-100 transition"
                     />
                   </div>
-
                 </div>
 
                 {/* Address */}
@@ -216,7 +200,6 @@ localStorage.setItem("pizza-order", JSON.stringify(orderData));
 
                 {/* City + Postal */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-
                   <div>
                     <label
                       htmlFor="city"
@@ -252,7 +235,6 @@ localStorage.setItem("pizza-order", JSON.stringify(orderData));
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-[#dc2626] focus:ring-2 focus:ring-red-100 transition"
                     />
                   </div>
-
                 </div>
 
                 {/* Notes */}
@@ -275,72 +257,53 @@ localStorage.setItem("pizza-order", JSON.stringify(orderData));
 
                 {/* Payment Method */}
                 <div>
-
                   <h3 className="text-lg font-bold text-[#1a1a1a] mb-4">
                     Payment Method
                   </h3>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-
                     {/* Cash */}
                     <label className="border-2 border-gray-200 rounded-xl p-4 cursor-pointer hover:border-[#dc2626] transition">
-
                       <input
                         type="radio"
                         name="payment"
                         value="Cash on Delivery"
                         checked={paymentMethod === "Cash on Delivery"}
-                        onChange={(e) =>
-                          setPaymentMethod(e.target.value)
-                        }
+                        onChange={(e) => setPaymentMethod(e.target.value)}
                         className="mr-2 accent-[#dc2626]"
                       />
-
                       <i className="ri-money-dollar-circle-line mr-2"></i>
-
                       Cash
                     </label>
 
                     {/* Card */}
                     <label className="border-2 border-gray-200 rounded-xl p-4 cursor-pointer hover:border-[#dc2626] transition">
-
                       <input
                         type="radio"
                         name="payment"
                         value="Card"
                         checked={paymentMethod === "Card"}
-                        onChange={(e) =>
-                          setPaymentMethod(e.target.value)
-                        }
+                        onChange={(e) => setPaymentMethod(e.target.value)}
                         className="mr-2 accent-[#dc2626]"
                       />
-
                       <i className="ri-bank-card-line mr-2"></i>
-
                       Card
                     </label>
 
                     {/* Online */}
                     <label className="border-2 border-gray-200 rounded-xl p-4 cursor-pointer hover:border-[#dc2626] transition">
-
                       <input
                         type="radio"
                         name="payment"
                         value="Online Payment"
                         checked={paymentMethod === "Online Payment"}
-                        onChange={(e) =>
-                          setPaymentMethod(e.target.value)
-                        }
+                        onChange={(e) => setPaymentMethod(e.target.value)}
                         className="mr-2 accent-[#dc2626]"
                       />
-
                       <i className="ri-smartphone-line mr-2"></i>
-
                       Online
                     </label>
-
                   </div>
-
                 </div>
 
                 {/* Place Order */}
@@ -349,39 +312,24 @@ localStorage.setItem("pizza-order", JSON.stringify(orderData));
                   disabled={isSubmitting}
                   className="w-full bg-[#dc2626] text-white py-4 rounded-full font-semibold text-lg hover:bg-[#b91c1c] transition duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting
-                    ? "Placing Order..."
-                    : "Place Order"}
+                  {isSubmitting ? "Placing Order..." : "Place Order"}
                 </button>
-
               </form>
-
             </div>
 
             {/* Order Summary */}
             <div className="bg-[#1a1a1a] text-white rounded-3xl p-7 h-fit shadow-xl">
-
-              <h2 className="text-2xl font-bold mb-7">
-                Order Summary
-              </h2>
+              <h2 className="text-2xl font-bold mb-7">Order Summary</h2>
 
               {/* Cart Items */}
               <div className="space-y-5">
-
                 {cart.map((pizza) => {
-                  const price = parseFloat(
-                    pizza.price.replace("$", "")
-                  );
+                  const price = parseFloat(pizza.price.replace("$", ""));
 
-                  const itemTotal =
-                    price * pizza.quantity;
+                  const itemTotal = price * pizza.quantity;
 
                   return (
-                    <div
-                      key={pizza.name}
-                      className="flex items-center gap-4"
-                    >
-
+                    <div key={pizza.name} className="flex items-center gap-4">
                       <img
                         src={pizza.image}
                         alt={pizza.name}
@@ -389,29 +337,22 @@ localStorage.setItem("pizza-order", JSON.stringify(orderData));
                       />
 
                       <div className="flex-1">
-
-                        <h3 className="font-semibold">
-                          {pizza.name}
-                        </h3>
+                        <h3 className="font-semibold">{pizza.name}</h3>
 
                         <p className="text-gray-400 text-sm">
                           Qty: {pizza.quantity}
                         </p>
-
                       </div>
 
                       <span className="font-semibold">
                         ${itemTotal.toFixed(2)}
                       </span>
-
                     </div>
                   );
                 })}
-
               </div>
 
               <div className="border-t border-gray-700 pt-5 mt-6 space-y-4">
-
                 <div className="flex justify-between text-gray-300">
                   <span>Subtotal</span>
                   <span>${subtotal.toFixed(2)}</span>
@@ -426,35 +367,24 @@ localStorage.setItem("pizza-order", JSON.stringify(orderData));
                   <span>Tax</span>
                   <span>${tax.toFixed(2)}</span>
                 </div>
-
               </div>
 
               <div className="border-t border-gray-700 my-5"></div>
 
               <div className="flex justify-between items-center">
-
-                <span className="text-lg font-semibold">
-                  Total
-                </span>
+                <span className="text-lg font-semibold">Total</span>
 
                 <span className="text-2xl font-bold text-[#f59e0b]">
                   ${total.toFixed(2)}
                 </span>
-
               </div>
 
               <div className="mt-6 flex items-center gap-2 text-gray-400 text-sm">
-
                 <i className="ri-shield-check-line text-[#f59e0b]"></i>
-
                 Secure checkout
-
               </div>
-
             </div>
-
           </div>
-
         </div>
       </section>
     </div>
