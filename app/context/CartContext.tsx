@@ -9,6 +9,7 @@ import {
 } from "react";
 
 export type Pizza = {
+  id: string;
   name: string;
   price: string;
   description: string;

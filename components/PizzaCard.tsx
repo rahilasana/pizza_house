@@ -3,6 +3,7 @@
 import { useCart } from "../app/context/CartContext";
 
 type PizzaCardProps = {
+  id: string;
   name: string;
   price: string;
   description: string;
@@ -10,6 +11,7 @@ type PizzaCardProps = {
 };
 
 export default function PizzaCard({
+  id,
   name,
   price,
   description,
@@ -17,14 +19,15 @@ export default function PizzaCard({
 }: PizzaCardProps) {
   const { addToCart } = useCart();
 
-  const handleAddToCart = () => {
-    addToCart({
-      name,
-      price,
-      description,
-      image,
-    });
-  };
+ const handleAddToCart = () => {
+  addToCart({
+    id,
+    name,
+    price,
+    description,
+    image,
+  });
+};
 
   return (
     <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:-translate-y-2 transition duration-300">
